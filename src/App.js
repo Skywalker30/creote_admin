@@ -5,39 +5,45 @@ import { AuthProvider } from "./auth/AuthContext";
 import Login from "./pages/Login";
 import Portal from "./Components/Portal";
 import Dashboard from "./pages/Dashboard";
-import TeamMembersList from "./pages/teammembers/TeamMembersList";
-import TeamMembersCreate from "./pages/teammembers/TeamMembersCreate";
-import TeamMembersView from "./pages/teammembers/TeamMembersView";
-import TeamMembersEdit from "./pages/teammembers/TeamMembersEdit";
+import TeamMembersList from "./pages/Page/OurTeam/teammembers/TeamMembersList";
+import TeamMembersCreate from "./pages/Page/OurTeam/teammembers/TeamMembersCreate";
+import TeamMembersView from "./pages/Page/OurTeam/teammembers/TeamMembersView";
+import TeamMembersEdit from "./pages/Page/OurTeam/teammembers/TeamMembersEdit";
 import Register from "./pages/Register";
 import "./sb-admin-2.min.css";
-import HumanResourcelist from "./pages/humanresource/HumanResourceList";
-import HumanResourceCreate from "./pages/humanresource/HumanResourceCreate";
-import HumanResourceEdit from "./pages/humanresource/HumanResourceEdit";
-import Customerlist from "./pages/customerServiceSection/CustomerServiceList";
-import CustomerCreate from "./pages/customerServiceSection/CustomerServiceCreate";
-import CustomerEdit from "./pages/customerServiceSection/CustomerServiceEdit";
-import HeaderList from "./pages/header/HeaderList";
-import HeaderCreate from "./pages/header/HeaderCreate";
-import HeaderEdit from "./pages/header/HeaderEdit";
-import SliderList from "./pages/slider/SliderList";
-import SliderEdit from "./pages/slider/SliderEdit";
-import SliderCreate from "./pages/slider/SliderCreate";
-import LogoList from "./pages/Logo/LogoList";
-import LogoEdit from "./pages/Logo/LogoEdit";
-import LogoCreate from "./pages/Logo/LogoCreate";
-import ImageBoxlist from "./pages/ImageBoxSection/ImageBoxSectionList";
-import ImageBoxCreate from "./pages/ImageBoxSection/ImageBoxSectionCreate";
-import ImageBoxEdit from "./pages/ImageBoxSection/ImageBoxSectionEdit";
-import TestimonialList from "./pages/TestimonialSection/TestimonialSectionList";
-import TestimonialCreate from "./pages/TestimonialSection/TestimonialSectionCreate";
-import TestimonialEdit from "./pages/TestimonialSection/TestimonialSectionEdit";
-import TabList from "./pages/TabSection/TabList"
-import TabCreate from "./pages/TabSection/TabCreate";
-import TabEdit from "./pages/TabSection/TabEdit";
-import BlogList from "./pages/BlogSection/BlogList";
-import BlogCreate from "./pages/BlogSection/BlogCreate";
-import BlogEdit from "./pages/BlogSection/BlogEdit";
+import HumanResourcelist from "./pages/Home/humanresource/HumanResourceList";
+import HumanResourceCreate from "./pages/Home/humanresource/HumanResourceCreate";
+import HumanResourceEdit from "./pages/Home/humanresource/HumanResourceEdit";
+import Customerlist from "./pages/Home/customerServiceSection/CustomerServiceList";
+import CustomerCreate from "./pages/Home/customerServiceSection/CustomerServiceCreate";
+import CustomerEdit from "./pages/Home/customerServiceSection/CustomerServiceEdit";
+import HeaderList from "./pages/Home/header/HeaderList";
+import HeaderCreate from "./pages/Home/header/HeaderCreate";
+import HeaderEdit from "./pages/Home/header/HeaderEdit";
+import SliderList from "./pages/Home/slider/SliderList";
+import SliderEdit from "./pages/Home/slider/SliderEdit";
+import SliderCreate from "./pages/Home/slider/SliderEdit";
+import LogoList from "./pages/Home/Logo/LogoList";
+import LogoEdit from "./pages/Home/Logo/LogoCreate";
+import LogoCreate from "./pages/Home/Logo/LogoCreate";
+import ImageBoxlist from "./pages/Home/ImageBoxSection/ImageBoxSectionList";
+import ImageBoxCreate from "./pages/Home/ImageBoxSection/ImageBoxSectionCreate";
+import ImageBoxEdit from "./pages/Home/ImageBoxSection/ImageBoxSectionEdit";
+import TestimonialList from "./pages/Home/TestimonialSection/TestimonialSectionList";
+import TestimonialCreate from "./pages/Home/TestimonialSection/TestimonialSectionCreate";
+import TestimonialEdit from "./pages/Home/TestimonialSection/TestimonialSectionEdit";
+import TabList from "./pages/Home/TabSection/TabList"
+import TabCreate from "./pages/Home/TabSection/TabCreate";
+import TabEdit from "./pages/Home/TabSection/TabEdit";
+import BlogList from "./pages/Home/BlogSection/BlogList";
+import BlogCreate from "./pages/Home/BlogSection/BlogCreate";
+import BlogEdit from "./pages/Home/BlogSection/BlogEdit";
+import LogoSectionOurTeamList from "./pages/Page/OurTeam/LogoSectionOurTeam/LogoSectionOurTeamList";
+import LogoSectionOurTeamCreate from "./pages/Page/OurTeam/LogoSectionOurTeam/LogoSectionOurTeamCreate";
+import LogoSectionOurTeamEdit from "./pages/Page/OurTeam/LogoSectionOurTeam/LogoSectionOurTeamEdit";
+import TeamMemberIntroList from "./pages/Page/OurTeam/TeamIntro/TeamIntroList";
+import TeamMemberIntroCreate from "./pages/Page/OurTeam/TeamIntro/TeamIntroCreate";
+import TeamMemberIntroEdit from "./pages/Page/OurTeam/TeamIntro/TeamIntroEdit";
 
 function App() {
   return (
@@ -81,6 +87,12 @@ function App() {
             <Route path="blog-list" element={<BlogList />} />
             <Route path="blog-create" element={<BlogCreate />} />
             <Route path="blog-edit/:id" element={<BlogEdit />} />
+            <Route path="logoSectionDataOurTeam-list" element={<LogoSectionOurTeamList />} />
+            <Route path="logoSectionDataOurTeam-create" element={<LogoSectionOurTeamCreate />} />
+            <Route path="logoSectionDataOurTeam-edit/:id" element={<LogoSectionOurTeamEdit />} />
+            <Route path="team-intro-list" element={<TeamMemberIntroList />} />
+            <Route path="team-intro-create" element={<TeamMemberIntroCreate />} />
+            <Route path="team-intro-edit/:id" element={<TeamMemberIntroEdit />} />
           </Route>
 
           {/* Default route */}

@@ -2,7 +2,7 @@ import React , {useContext} from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../pages/Sidebar";
 import Topbar from "../pages/Topbar";
-import Userlist from "../pages/teammembers/TeamMembersList";
+import Userlist from "../pages/Page/OurTeam/teammembers/TeamMembersList.js";
 import { AuthContext } from "../auth/AuthContext";
 import { Navigate } from "react-router-dom";
 

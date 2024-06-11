@@ -127,6 +127,10 @@ function Sidebar() {
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>TeamIntro of OurTeam</span>
             </Link>
+            <Link className="dropdown-item text-white" to="/portal/cv-list" onClick={closeDropdowns}>
+              <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
+              <span>CV</span>
+            </Link>
           </div>
         )}
       </li>

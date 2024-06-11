@@ -44,6 +44,10 @@ import LogoSectionOurTeamEdit from "./pages/Page/OurTeam/LogoSectionOurTeam/Logo
 import TeamMemberIntroList from "./pages/Page/OurTeam/TeamIntro/TeamIntroList";
 import TeamMemberIntroCreate from "./pages/Page/OurTeam/TeamIntro/TeamIntroCreate";
 import TeamMemberIntroEdit from "./pages/Page/OurTeam/TeamIntro/TeamIntroEdit";
+import CVList from "./pages/Page/CV/CVList";
+import CVCreate from "./pages/Page/CV/CVCreate";
+import CVEdit from "./pages/Page/CV/CVEdit";
+
 
 function App() {
   return (
@@ -93,6 +97,9 @@ function App() {
             <Route path="team-intro-list" element={<TeamMemberIntroList />} />
             <Route path="team-intro-create" element={<TeamMemberIntroCreate />} />
             <Route path="team-intro-edit/:id" element={<TeamMemberIntroEdit />} />
+            <Route path="cv-list" element={<CVList />} />
+            <Route path="cv-create" element={<CVCreate />} />
+            <Route path="cv-edit/:id" element={<CVEdit />} />
           </Route>
 
           {/* Default route */}

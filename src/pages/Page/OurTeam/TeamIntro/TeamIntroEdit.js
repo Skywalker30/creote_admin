@@ -7,7 +7,9 @@ function TeamMemberIntroEdit() {
   const params = useParams();
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
   const [initialData, setInitialData] = useState({
+    imageSrc: "",
     heading: "",
     title: "",
     content: "",
@@ -78,6 +80,37 @@ function TeamMemberIntroEdit() {
     },
   });
 
+  const handleImageClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    uploadImage(file);
+  };
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folderName", "images/OurTeam_TeamIntro_pic"); // Set folderName to "service_section_pic"
+
+    try {
+      const response = await api.post("/api/uploadAndStore", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      setInitialData((prevData) => ({
+        ...prevData,
+        imageSrc: response.data.filePath,
+      }));
+      myFormik.setFieldValue("imageSrc", response.data.filePath);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
   return (
     <>
       <h3>DataEdit - Id : {params.id}</h3>
@@ -114,7 +147,7 @@ function TeamMemberIntroEdit() {
             <div className="col-lg-4">
               <label>Content</label>
               <input
-                name="description"
+                name="content"
                 value={myFormik.values.content}
                 onChange={myFormik.handleChange}
                 type="text"
@@ -163,6 +196,23 @@ function TeamMemberIntroEdit() {
                 }`}
               />
               <span style={{ color: "red" }}>{myFormik.errors.role}</span>
+            </div>
+
+            <div className="col-lg-12 mt-3">
+              <br />
+              <img
+                src={initialData.imageSrc}
+                alt="Previous"
+                style={{ width: "100px", height: "100px", cursor: "pointer" }}
+                onClick={handleImageClick}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
             </div>
 
             <div className="col-lg-12 mt-3">

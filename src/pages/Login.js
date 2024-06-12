@@ -91,7 +91,7 @@ function Login() {
                       type="submit"
                       className="btn btn-primary btn-user btn-block"
                     >
-                      Login Button
+                      Login
                     </button>
                     <hr />
                     <Link

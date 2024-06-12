@@ -146,6 +146,7 @@ function TeamMemberIntroList() {
                     <th>Yr Of Exp</th>
                     <th>Name</th>
                     <th>Role</th>
+                    <th>ImageSrc</th>
                     <th>Action</th>
                     <th>Display On Page</th>
                   </tr>
@@ -160,7 +161,13 @@ function TeamMemberIntroList() {
                       <td>{data.yrOfExp}</td>
                       <td>{data.name}</td>
                       <td>{data.role}</td>
-
+                      <td>
+                        <img
+                          src={data.imageSrc}
+                          style={{ height: "100px", width: "100px" }}
+                          alt=""
+                        />
+                      </td>
                       <td>
                         <Link
                           to={`/portal/team-intro-edit/${data._id}`}

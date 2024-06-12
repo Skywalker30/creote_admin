@@ -10323,3 +10323,38 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+/* Ensure the sidebar has proper height and overflow handling */
+.sidebar {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Ensure the dropdown menus don't overlap other content */
+.dropdown-menu {
+  position: static;
+  float: none;
+  z-index: 1000;
+  background: #4e73df; /* Match the sidebar background */
+}
+
+/* Adjust dropdown items to ensure proper display */
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  background-color: transparent !important; /* Prevent background change on hover */
+  color: white; /* Ensure text is white */
+}
+
+/* Ensure dropdown items don't change background on hover */
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: transparent !important;
+  color: white !important; /* Keep text color white on hover */
+}
+
+/* Ensure the sidebar buttons are properly displayed */
+.sidebar-btn {
+  width: 100%;
+  text-align: left;
+  color: white;
+}

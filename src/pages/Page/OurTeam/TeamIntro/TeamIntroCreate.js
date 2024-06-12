@@ -5,18 +5,20 @@ import { api } from "../../../../API/api";
 
 function TeamMemberIntroCreate() {
   const [isLoading, setLoading] = useState(false);
-  //   const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
   //   const [selectedSliderImage, setSelectedSliderImage] = useState(null);
   const navigate = useNavigate();
 
   const myFormik = useFormik({
     initialValues: {
+      imageSrc: "",
       heading: "",
       title: "",
       content: "",
       yrOfExp: 0,
       name: "",
       role: "",
+      displayOnPage: false,
     },
     validate: (values) => {
       let errors = {};
@@ -46,6 +48,9 @@ function TeamMemberIntroCreate() {
       } else if (values.role.length < 3) {
         errors.role = "Invalid title address";
       }
+      if (!values.imageSrc) {
+        errors.imageSrc = "Please insert an image";
+      }
 
       //   if (!values.imageSrc) {
       //     errors.imageSrc = "Please insert an image";
@@ -72,6 +77,31 @@ function TeamMemberIntroCreate() {
       }
     },
   });
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const imageUrl = URL.createObjectURL(file); // Create URL from file
+    setSelectedImage(imageUrl); // Set selectedImage to URL
+    myFormik.setFieldValue("imageSrc", imageUrl);
+    uploadImage(file); // Set imageSrc to URL
+  };
+
+  const uploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folderName", "images/OurTeam_TeamIntro_pic"); // Set folderName to "service_section_pic"
+
+    try {
+      const response = await api.post("/api/uploadAndStore", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      myFormik.setFieldValue("imageSrc", response.data.filePath);
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
 
   return (
     <div className="container">
@@ -155,6 +185,27 @@ function TeamMemberIntroCreate() {
               }`}
             />
             <span style={{ color: "red" }}>{myFormik.errors.role}</span>
+          </div>
+
+          <div className="col-lg-5 mt-3">
+            <label>Choose Picture</label>
+            <input
+              type="file"
+              accept="image/*"
+              className={`form-control ${
+                myFormik.errors.imageSrc ? "is-invalid" : ""
+              }`}
+              onChange={handleFileChange}
+            />
+            <span style={{ color: "red" }}>{myFormik.errors.imageSrc}</span>
+            <br />
+            {selectedImage && (
+              <img
+                src={selectedImage}
+                alt="Selected"
+                style={{ maxWidth: "1000%", maxHeight: "100px" }}
+              />
+            )}
           </div>
 
           <div className="col-lg-12 mt-3">

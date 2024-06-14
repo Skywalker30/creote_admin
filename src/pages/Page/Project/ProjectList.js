@@ -9,7 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { api } from "../../../API/api";
 
-function CVList() {
+function ProjectList() {
   const [dataList, setDataList] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,29 +22,14 @@ function CVList() {
   useEffect(() => {
     const filteredData = dataList.filter((data) =>
       [
-        data.name,
-        data.yrOfExp,
-        data.companyCurrentDate,
-        data.companyName,
-        data.introduction,
-        data.collegeName,
-        data.startYearCollege,
-        data.passingYearCollege,
-        data.degree,
-        data.collegePercentage,
-        data.contract,
-        data.companyJoiningDate,
-        data.strength,
-        data.TimeZone,
-        data.ClientVisit,
-        data.MigrationVisit,
-        data.developer,
-        data.language,
-        data.Communication,
-        data.Point,
-        data.position,
-        data.keyPoint,
-        data.technology
+        data.projectName,
+        data.year,
+        data.technology,
+        data.date,
+        data.description,
+        data.clientName,
+        data.projectLink
+        
       ]
         .filter((item) => item !== undefined && item !== null)
         .some((item) =>
@@ -56,7 +41,7 @@ function CVList() {
 
   const getData = async () => {
     try {
-      const response = await api.get("/api/user/CV");
+      const response = await api.get("/api/user/Project");
       setDataList(response.data);
       setLoading(false);
     } catch (error) {
@@ -70,7 +55,7 @@ function CVList() {
         "Are you sure you want to delete the Data?"
       );
       if (confirmDelete && id !== undefined) {
-        await api.delete(`/api/user/CV/${id}`);
+        await api.delete(`/api/user/Project/${id}`);
         getData();
       }
     } catch (error) {
@@ -103,9 +88,9 @@ function CVList() {
         </div>
       </form>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800"> CV Section Data :</h1>
+        <h1 className="h3 mb-0 text-gray-800"> Project Section Data :</h1>
         <Link
-          to="/portal/cv-create"
+          to="/portal/project-create"
           className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
         >
           <FontAwesomeIcon icon={faDatabase} className="creatinguser mr-2" />
@@ -133,31 +118,15 @@ function CVList() {
                 <thead>
                   <tr>
                     <th>Sr.No</th>
-                    <th>Name</th>
-                    <th>Company Name</th>
-                    <th>Years Of Experience</th>
-                    <th>Company Joining Date</th>
-                    <th>Company Current Date</th>
-                    <th>Introduction</th>
-                    <th>College Name</th>
-                    <th>Degree</th>
-                    <th>Start Year College</th>
-                    <th>Passing Year College</th>
-                    <th>College Percentage</th>
-                    <th>Contract</th>
-                    <th>Strength</th>
-                    <th>Time-Zone</th>
-                    <th>Client-Visit</th>
-                    <th>Migration-Visit</th>
-                    <th>Developer</th>
-                    <th>Language known</th>
-                    <th>Communication</th>
-                    <th>SUMMARY Point</th>
-                    <th>Title</th>
-                    <th>Position</th>
-                    <th>Position Point</th>
+                    <th>Project Name</th>
                     <th>Technology</th>
-                    <th>ImageSrc</th>
+                    <th>Year</th>
+                    <th>Project Link</th>
+                    <th>Date</th>
+                    <th>Client Name</th>
+                    <th>Description</th>
+                    <th>Description Image</th>
+                    <th>Project Logo</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -165,40 +134,30 @@ function CVList() {
                   {filteredDataList.map((data, index) => (
                     <tr key={data._id}>
                       <td>{index + 1}</td>
-                      <td>{data.name}</td>
-                      <td>{data.companyName}</td>
-                      <td>{data.yrOfExp}</td>
-                      <td>{data.companyJoiningDate}</td>
-                      <td>{data.companyCurrentDate}</td>
-                      <td>{data.introduction}</td>
-                      <td>{data.collegeName}</td>
-                      <td>{data.degree}</td>
-                      <td>{data.startYearCollege}</td>
-                      <td>{data.passingYearCollege}</td>
-                      <td>{data.collegePercentage}</td>
-                      <td>{data.contract}</td>
-                      <td>{data.strength}</td>
-                      <td>{data.TimeZone}</td>
-                      <td>{data.ClientVisit}</td>
-                      <td>{data.MigrationVisit}</td>
-                      <td>{data.developer}</td>
-                      <td>{data.language}</td>
-                      <td>{data.Communication}</td>
-                      <td>{data.Point}</td>
-                      <td>{data.title}</td>
-                      <td>{data.position}</td>
-                      <td>{data.keyPoint}</td>
+                      <td>{data.projectName}</td>
                       <td>{data.technology}</td>
+                      <td>{data.year}</td>
+                      <td>{data.projectLink}</td>
+                      <td>{data.date}</td>
+                      <td>{data.clientName}</td>
+                      <td>{data.description}</td>
                       <td>
                         <img
-                          src={data.imageSrc}
+                          src={data.descriptionImage}
+                          style={{ height: "100px", width: "100px" }}
+                          alt=""
+                        />
+                      </td>
+                      <td>
+                        <img
+                          src={data.logo}
                           style={{ height: "100px", width: "100px" }}
                           alt=""
                         />
                       </td>
                       <td>
                         <Link
-                          to={`/portal/cv-edit/${data._id}`}
+                          to={`/portal/project-edit/${data._id}`}
                           className="btn btn-info btn-sm mr-1"
                         >
                           <FontAwesomeIcon icon={faPen} />
@@ -222,4 +181,4 @@ function CVList() {
   );
 }
 
-export default CVList;
+export default ProjectList;

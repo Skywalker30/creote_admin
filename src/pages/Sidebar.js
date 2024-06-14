@@ -38,11 +38,6 @@ function Sidebar() {
     }
   };
 
-  const closeDropdowns = () => {
-    setHomeDropdownOpen(false);
-    setPagesDropdownOpen(false);
-  };
-
   return (
     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -62,49 +57,49 @@ function Sidebar() {
       </li>
       <hr className="sidebar-divider my-0" />
       <li className={`nav-item ${homeDropdownOpen ? "active show" : ""}`}>
-        <a className="nav-link dropdown-toggle" onClick={toggleHomeDropdown} style={{ cursor: "pointer" }}>
+        <Link className="nav-link dropdown-toggle" onClick={toggleHomeDropdown} style={{ cursor: "pointer" }}>
           <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
           <span>Home Section</span>
-        </a>
+        </Link>
         {homeDropdownOpen && (
           <div className="dropdown-menu show bg-gradient-primary border-0 w-100 shadow-none">
-            <Link className="dropdown-item text-white" to="/portal/teammembers-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/teammembers-list">
               <FontAwesomeIcon icon={faUsers} style={{ marginRight: "0.5rem" }} />
               <span>TeamMembers</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/slider-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/slider-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>Slider Data</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/humanresource-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/humanresource-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>HumanResource Data</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/customerservice-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/customerservice-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>CustomerService Data</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/header-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/header-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>Header Data</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/logo-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/logo-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>Logo</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/imageBox-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/imageBox-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>ImageBox Section</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/testimonial-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/testimonial-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>Testimonial Section</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/tab-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/tab-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>Tab Section</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/blog-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/blog-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>Blog Section</span>
             </Link>
@@ -113,23 +108,27 @@ function Sidebar() {
       </li>
       <hr className="sidebar-divider my-0" />
       <li className={`nav-item ${pagesDropdownOpen ? "active show" : ""}`}>
-        <a className="nav-link dropdown-toggle" onClick={togglePagesDropdown} style={{ cursor: "pointer" }}>
+        <Link className="nav-link dropdown-toggle" onClick={togglePagesDropdown} style={{ cursor: "pointer" }}>
           <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
           <span>Pages Section</span>
-        </a>
+        </Link>
         {pagesDropdownOpen && (
           <div className="dropdown-menu show bg-gradient-primary border-0 w-100 shadow-none">
-            <Link className="dropdown-item text-white" to="/portal/logoSectionDataOurTeam-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/logoSectionDataOurTeam-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>Logo Section Data of OurTeam</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/team-intro-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/team-intro-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>TeamIntro of OurTeam</span>
             </Link>
-            <Link className="dropdown-item text-white" to="/portal/cv-list" onClick={closeDropdowns}>
+            <Link className="dropdown-item text-white" to="/portal/cv-list" >
               <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
               <span>CV</span>
+            </Link>
+            <Link className="dropdown-item text-white" to="/portal/project-list" >
+              <FontAwesomeIcon icon={faDatabase} style={{ marginRight: "0.5rem" }} />
+              <span>Project</span>
             </Link>
           </div>
         )}

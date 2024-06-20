@@ -7,6 +7,7 @@ function ProjectCreate() {
   const [isLoading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedProjectImage, setSelectedProjectImage] = useState(null);
+  // const [selectedMultipleImage, setSelectedMultipleImage] = useState([]);
   const navigate = useNavigate();
 
   const myFormik = useFormik({
@@ -20,6 +21,10 @@ function ProjectCreate() {
       date: "",
       clientName: "",
       descriptionImage: "",
+      StructuredOurWorkflow: "",
+      // image : "",
+      // imageTitle : "",
+      // imageContent : ""
     },
     validate: (values) => {
       let errors = {};
@@ -27,6 +32,14 @@ function ProjectCreate() {
       if (!values.projectName) {
         errors.projectName = "Please enter Project Name";
       }
+
+      if (!values.StructuredOurWorkflow) {
+        errors.StructuredOurWorkflow = "Please enter StructuredOurWorkflow";
+      }
+
+      // if (!values.imageContent) {
+      //   errors.imageContent = "Please enter Image Content";
+      // }
 
       if (!values.description) {
         errors.description = "Please enter description";
@@ -49,6 +62,10 @@ function ProjectCreate() {
       if (!values.descriptionImage) {
         errors.descriptionImage = "Please insert an image";
       }
+
+      // if (!values.image) {
+      //   errors.image = "Please insert an image";
+      // }
 
       if (!values.logo) {
         errors.logo = "Please insert an logo image";
@@ -91,6 +108,7 @@ function ProjectCreate() {
     },
 
     onSubmit: async (values) => {
+      console.log("Submitting values:", values);
       try {
         setLoading(true);
         const response = await api.post("/api/user/Project", values);
@@ -119,6 +137,25 @@ function ProjectCreate() {
     uploadImage(file, "descriptionImage");
   };
 
+  // const handleMultipleImageFileChange = (event) => {
+  //   const files =Array.from(event.target.files);
+  //   const imageUrl = files.map(file => URL.createObjectURL(file));
+  //   setSelectedMultipleImage(prevImages => [...prevImages, ...imageUrl]);
+  //   myFormik.setFieldValue("image",  [...myFormik.values.image, ...imageUrl]);
+  //   files.forEach(file => {
+  //   uploadImage(file, "image");
+  // })
+  // };
+
+  // const handleImageRemove = (indexToRemove) => {
+  //   setSelectedMultipleImage(prevImages =>
+  //       prevImages.filter((_, index) => index !== indexToRemove)
+  //   );
+  //   const remainingImages = [...myFormik.values.image];
+  //   remainingImages.splice(indexToRemove, 1);
+  //   myFormik.setFieldValue("image", remainingImages);
+  // };
+
   const uploadImage = async (file, field) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -136,14 +173,17 @@ function ProjectCreate() {
 
     formData.append("folderName", folderName);
     try {
+      console.log("Uploading file:", file);
       const response = await api.post("/api/uploadAndStore", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log("File uploaded:", response.data);
       myFormik.setFieldValue(field, response.data.filePath);
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error(`Error uploading ${field} image:`, error);
+      console.log("Error Response:", error.response);
     }
   };
 
@@ -297,7 +337,97 @@ function ProjectCreate() {
                   />
                 )}
               </div>
+
+              {/* <div className="col-lg-5 mt-3">
+                <label>Project Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className={`form-control ${
+                    myFormik.errors.image ? "is-invalid" : ""
+                  }`}
+                  onChange={handleMultipleImageFileChange}
+                />
+                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {selectedMultipleImage.map((image, index) => (
+                  <div key={index} style={{ position: 'relative', marginRight: '10px' }}>
+                  <img
+                    src={image}
+                    alt={`Selected ${index}`}
+                    style={{ maxWidth: "100%", maxHeight: "100px", margin: "5px", cursor: 'pointer' }}
+                    onClick={() => handleImageRemove(index)}
+                  />
+                  <span 
+                      style={{
+                        position: 'absolute',
+                        top: '5px',
+                        right: '5px',
+                        cursor: 'pointer',
+                        backgroundColor: 'white',
+                        padding: '2px 5px',
+                        borderRadius: '50%'
+                      }}
+                      onClick={() => handleImageRemove(index)}
+                      >
+                        &times;
+                      </span>
+                  </div>
+               ) )}
+               </div>
+              </div> */}
             </form>
+          </div>
+
+          {/* <div className="col-lg-6">
+            <label>Project Title</label>
+            <textarea
+              name="imageTitle"
+              value={myFormik.values.imageTitle}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.imageTitle ? "is-invalid" : ""
+              }`}
+              rows="5"
+            ></textarea>
+            <span style={{ color: "red" }}>{myFormik.errors.imageTitle}</span>
+          </div> */}
+
+          {/* <div className="col-lg-6">
+            <label>Project Content</label>
+            <textarea
+              name="imageContent"
+              value={myFormik.values.imageContent}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.imageContent ? "is-invalid" : ""
+              }`}
+              rows="5"
+            ></textarea>
+            <span style={{ color: "red" }}>{myFormik.errors.imageContent}</span>
+          </div> */}
+
+          <div className="col-lg-6">
+            <label>
+              Structured Our Workflow (first add number than make this :: and
+              add title and make this ::: and add Statement and for second data
+              add this //n )
+            </label>
+            <textarea
+              name="StructuredOurWorkflow"
+              value={myFormik.values.StructuredOurWorkflow}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.StructuredOurWorkflow ? "is-invalid" : ""
+              }`}
+              rows="5"
+            ></textarea>
+            <span style={{ color: "red" }}>
+              {myFormik.errors.StructuredOurWorkflow}
+            </span>
           </div>
 
           <div className="col-lg-12 mt-3">

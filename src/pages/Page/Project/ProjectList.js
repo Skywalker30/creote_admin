@@ -127,6 +127,10 @@ function ProjectList() {
                     <th>Description</th>
                     <th>Description Image</th>
                     <th>Project Logo</th>
+                    <th>StructuredOurWorkflow</th>
+                    {/* <th>Project Image</th>
+                    <th>Image Title</th>
+                    <th>Image Content</th> */}
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -155,6 +159,16 @@ function ProjectList() {
                           alt=""
                         />
                       </td>
+                      <td>{data.StructuredOurWorkflow}</td>
+                      {/* <td>
+                        <img
+                          src={data.image}
+                          style={{ height: "100px", width: "100px" }}
+                          alt=""
+                        />
+                      </td>
+                      <td>{data.imageTitle}</td>
+                      <td>{data.imageContent}</td> */}
                       <td>
                         <Link
                           to={`/portal/project-edit/${data._id}`}

@@ -19,6 +19,7 @@ function ProjectEdit() {
     date: "",
     clientName: "",
     descriptionImage: "",
+    StructuredOurWorkflow: "",
   });
 
   useEffect(() => {
@@ -43,6 +44,10 @@ function ProjectEdit() {
 
       if (!values.projectName) {
         errors.projectName = "Please enter Project Name";
+      }
+
+      if (!values.StructuredOurWorkflow) {
+        errors.StructuredOurWorkflow = "Please enter StructuredOurWorkflow";
       }
 
       if (!values.description) {
@@ -320,6 +325,21 @@ function ProjectEdit() {
               />
             </div>
 
+            <div className="col-lg-6">
+            <label>Structured Our Workflow (first add number than make this :: and add title and make this ::: and add Statement and for second data add this //n )</label>
+            <textarea
+              name="StructuredOurWorkflow"
+              value={myFormik.values.StructuredOurWorkflow}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.StructuredOurWorkflow ? "is-invalid" : ""
+              }`}
+              rows="5"
+            ></textarea>
+            <span style={{ color: "red" }}>{myFormik.errors.StructuredOurWorkflow}</span>
+          </div>
+          
             <div className="col-lg-12 mt-3">
               <input
                 disabled={isLoading}

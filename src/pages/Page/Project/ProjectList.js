@@ -128,9 +128,15 @@ function ProjectList() {
                     <th>Description Image</th>
                     <th>Project Logo</th>
                     <th>StructuredOurWorkflow</th>
-                    {/* <th>Project Image</th>
-                    <th>Image Title</th>
-                    <th>Image Content</th> */}
+                    <th>Project Image1</th>
+                    <th>Image Title1</th>
+                    <th>Image Content1</th>
+                    <th>Project Image2</th>
+                    <th>Image Title2</th>
+                    <th>Image Content2</th>
+                    <th>Project Image3</th>
+                    <th>Image Title3</th>
+                    <th>Image Content3</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -160,15 +166,33 @@ function ProjectList() {
                         />
                       </td>
                       <td>{data.StructuredOurWorkflow}</td>
-                      {/* <td>
+                      <td>
                         <img
-                          src={data.image}
+                          src={data.image1}
                           style={{ height: "100px", width: "100px" }}
                           alt=""
                         />
                       </td>
-                      <td>{data.imageTitle}</td>
-                      <td>{data.imageContent}</td> */}
+                      <td>{data.imageTitle1}</td>
+                      <td>{data.imageContent1}</td>
+                      <td>
+                        <img
+                          src={data.image2}
+                          style={{ height: "100px", width: "100px" }}
+                          alt=""
+                        />
+                      </td>
+                      <td>{data.imageTitle2}</td>
+                      <td>{data.imageContent2}</td>
+                      <td>
+                        <img
+                          src={data.image3}
+                          style={{ height: "100px", width: "100px" }}
+                          alt=""
+                        />
+                      </td>
+                      <td>{data.imageTitle3}</td>
+                      <td>{data.imageContent3}</td>
                       <td>
                         <Link
                           to={`/portal/project-edit/${data._id}`}

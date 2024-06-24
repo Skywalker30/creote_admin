@@ -9,6 +9,9 @@ function ProjectEdit() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const projectFileInputRef = useRef(null);
+  const image1FileInputRef = useRef(null);
+  const image2FileInputRef = useRef(null);
+  const image3FileInputRef = useRef(null);
   const [initialData, setInitialData] = useState({
     logo: "",
     year: "",
@@ -20,6 +23,15 @@ function ProjectEdit() {
     clientName: "",
     descriptionImage: "",
     StructuredOurWorkflow: "",
+    image1: "",
+    imageTitle1: "",
+    imageContent1: "",
+    image2: "",
+    imageTitle2: "",
+    imageContent2: "",
+    image3: "",
+    imageTitle3: "",
+    imageContent3: "",
   });
 
   useEffect(() => {
@@ -48,6 +60,14 @@ function ProjectEdit() {
 
       if (!values.StructuredOurWorkflow) {
         errors.StructuredOurWorkflow = "Please enter StructuredOurWorkflow";
+      }
+      
+      if (!values.imageContent1) {
+        errors.imageContent1 = "Please enter Image Content";
+      }
+
+      if (!values.imageTitle1) {
+        errors.imageTitle1 = "Please enter Image Title";
       }
 
       if (!values.description) {
@@ -134,6 +154,33 @@ function ProjectEdit() {
     uploadImage(file, "descriptionImage");
   };
 
+  const handleImage1Click = () => {
+    image1FileInputRef.current.click();
+  };
+
+  const handleImage1FileChange = (event) => {
+    const file = event.target.files[0];
+    uploadImage(file, "image1");
+  };
+
+  const handleImage2Click = () => {
+    image2FileInputRef.current.click();
+  };
+
+  const handleImage2FileChange = (event) => {
+    const file = event.target.files[0];
+    uploadImage(file, "image2");
+  };
+
+  const handleImage3Click = () => {
+    image3FileInputRef.current.click();
+  };
+
+  const handleImage3FileChange = (event) => {
+    const file = event.target.files[0];
+    uploadImage(file, "image3");
+  };
+
   const uploadImage = async (file, field) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -142,6 +189,12 @@ function ProjectEdit() {
     if (field === "logo") {
       folderName = "images/Project_logo_pic";
     } else if (field === "descriptionImage") {
+      folderName = "images/Project_pic";
+    }  else if (field === "image1") {
+      folderName = "images/Project_pic";
+    } else if (field === "image2") {
+      folderName = "images/Project_pic";
+    } else if (field === "image3") {
       folderName = "images/Project_pic";
     }
 
@@ -287,7 +340,7 @@ function ProjectEdit() {
               </span>
             </div>
 
-            <div className="col-lg-12 mt-3">
+            <div className="col-lg-6 mt-3">
               <label>Description Image</label>
               <br />
               <img
@@ -307,7 +360,7 @@ function ProjectEdit() {
               />
             </div>
 
-            <div className="col-lg-12 mt-3">
+            <div className="col-lg-6 mt-3">
               <label>Choose Logo Picture</label>
               <br />
               <img
@@ -325,21 +378,174 @@ function ProjectEdit() {
               />
             </div>
 
+            <div className="col-lg-6 mt-3">
+              <label>Choose Project Picture1</label>
+              <br />
+              <img
+                src={initialData.image1}
+                alt="Previous"
+                style={{ width: "100px", height: "100px", cursor: "pointer" }}
+                onClick={() => handleImage1Click("image1")} // Pass the field name
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={image1FileInputRef} // For sliderImg input
+                style={{ display: "none" }}
+                onChange={(event) => handleImage1FileChange(event, "image1")} // Pass the field name
+              />
+            </div>
+
+            <div className="col-lg-6 mt-3">
+              <label>Choose Project Picture2</label>
+              <br />
+              <img
+                src={initialData.image2}
+                alt="Previous"
+                style={{ width: "100px", height: "100px", cursor: "pointer" }}
+                onClick={() => handleImage2Click("image2")} // Pass the field name
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={image2FileInputRef} // For sliderImg input
+                style={{ display: "none" }}
+                onChange={(event) => handleImage2FileChange(event, "image2")} // Pass the field name
+              />
+            </div>
+
+            <div className="col-lg-6 mt-3">
+              <label>Choose Project Picture3</label>
+              <br />
+              <img
+                src={initialData.image3}
+                alt="Previous"
+                style={{ width: "100px", height: "100px", cursor: "pointer" }}
+                onClick={() => handleImage3Click("image3")} // Pass the field name
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={image3FileInputRef} // For sliderImg input
+                style={{ display: "none" }}
+                onChange={(event) => handleImage3FileChange(event, "image3")} // Pass the field name
+              />
+            </div>
+
             <div className="col-lg-6">
-            <label>Structured Our Workflow (first add number than make this :: and add title and make this ::: and add Statement and for second data add this //n )</label>
-            <textarea
-              name="StructuredOurWorkflow"
-              value={myFormik.values.StructuredOurWorkflow}
+            <label>Image Title1</label>
+            <input
+              name="imageTitle1"
+              value={myFormik.values.imageTitle1}
               onChange={myFormik.handleChange}
               type="text"
               className={`form-control ${
-                myFormik.errors.StructuredOurWorkflow ? "is-invalid" : ""
+                myFormik.errors.imageTitle1 ? "is-invalid" : ""
+              }`}
+            />
+            <span style={{ color: "red" }}>{myFormik.errors.imageTitle1}</span>
+          </div>
+
+          <div className="col-lg-6">
+            <label>Project Content1</label>
+            <textarea
+              name="imageContent1"
+              value={myFormik.values.imageContent1}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.imageContent1 ? "is-invalid" : ""
               }`}
               rows="5"
             ></textarea>
-            <span style={{ color: "red" }}>{myFormik.errors.StructuredOurWorkflow}</span>
+            <span style={{ color: "red" }}>
+              {myFormik.errors.imageContent1}
+            </span>
           </div>
-          
+
+          <div className="col-lg-6">
+            <label>Image Title2</label>
+            <input
+              name="imageTitle2"
+              value={myFormik.values.imageTitle2}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.imageTitle1 ? "is-invalid" : ""
+              }`}
+            />
+            <span style={{ color: "red" }}>{myFormik.errors.imageTitle1}</span>
+          </div>
+
+          <div className="col-lg-6">
+            <label>Project Content2</label>
+            <textarea
+              name="imageContent2"
+              value={myFormik.values.imageContent2}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.imageContent1 ? "is-invalid" : ""
+              }`}
+              rows="5"
+            ></textarea>
+            <span style={{ color: "red" }}>
+              {myFormik.errors.imageContent1}
+            </span>
+          </div>
+
+          <div className="col-lg-6">
+            <label>Image Title3</label>
+            <input
+              name="imageTitle3"
+              value={myFormik.values.imageTitle3}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.imageTitle1 ? "is-invalid" : ""
+              }`}
+            />
+            <span style={{ color: "red" }}>{myFormik.errors.imageTitle1}</span>
+          </div>
+
+          <div className="col-lg-6">
+            <label>Project Content3</label>
+            <textarea
+              name="imageContent3"
+              value={myFormik.values.imageContent3}
+              onChange={myFormik.handleChange}
+              type="text"
+              className={`form-control ${
+                myFormik.errors.imageContent1 ? "is-invalid" : ""
+              }`}
+              rows="5"
+            ></textarea>
+            <span style={{ color: "red" }}>
+              {myFormik.errors.imageContent1}
+            </span>
+          </div>
+
+            <div className="col-lg-6">
+              <label>
+                Structured Our Workflow (first add number than make this :: and
+                add title and make this ::: and add Statement and for second
+                data add this //n )
+              </label>
+              <textarea
+                name="StructuredOurWorkflow"
+                value={myFormik.values.StructuredOurWorkflow}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.StructuredOurWorkflow ? "is-invalid" : ""
+                }`}
+                rows="5"
+              ></textarea>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.StructuredOurWorkflow}
+              </span>
+            </div>
+
             <div className="col-lg-12 mt-3">
               <input
                 disabled={isLoading}

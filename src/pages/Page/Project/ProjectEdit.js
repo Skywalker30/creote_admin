@@ -12,6 +12,9 @@ function ProjectEdit() {
   const image1FileInputRef = useRef(null);
   const image2FileInputRef = useRef(null);
   const image3FileInputRef = useRef(null);
+  const TeamMemberImage1FileInputRef = useRef(null);
+  const TeamMemberImage2FileInputRef = useRef(null);
+  const TeamMemberImage3FileInputRef = useRef(null);
   const [initialData, setInitialData] = useState({
     logo: "",
     year: "",
@@ -32,6 +35,15 @@ function ProjectEdit() {
     image3: "",
     imageTitle3: "",
     imageContent3: "",
+    MemberName1: "",
+    MemberImage1: "",
+    MemberWork1: "",
+    MemberName2: "",
+    MemberImage2: "",
+    MemberWork2: "",
+    MemberName3: "",
+    MemberImage3: "",
+    MemberWork3: "",
   });
 
   useEffect(() => {
@@ -61,7 +73,15 @@ function ProjectEdit() {
       if (!values.StructuredOurWorkflow) {
         errors.StructuredOurWorkflow = "Please enter StructuredOurWorkflow";
       }
-      
+
+      if (!values.MemberName1) {
+        errors.MemberName1 = "Please enter Project Member Name";
+      }
+
+      if (!values.MemberWork1) {
+        errors.MemberWork1 = "Please enter Project MemberWork";
+      }
+
       if (!values.imageContent1) {
         errors.imageContent1 = "Please enter Image Content";
       }
@@ -181,6 +201,33 @@ function ProjectEdit() {
     uploadImage(file, "image3");
   };
 
+  const handleTeamMemberImage1Click = () => {
+    TeamMemberImage1FileInputRef.current.click();
+  };
+
+  const handleTeamMemberImage1FileChange = (event) => {
+    const file = event.target.files[0];
+    uploadImage(file, "MemberImage1");
+  };
+
+  const handleTeamMemberImage2Click = () => {
+    TeamMemberImage2FileInputRef.current.click();
+  };
+
+  const handleTeamMemberImage2FileChange = (event) => {
+    const file = event.target.files[0];
+    uploadImage(file, "MemberImage2");
+  };
+
+  const handleTeamMemberImage3Click = () => {
+    TeamMemberImage3FileInputRef.current.click();
+  };
+
+  const handleTeamMemberImage3FileChange = (event) => {
+    const file = event.target.files[0];
+    uploadImage(file, "MemberImage3");
+  };
+
   const uploadImage = async (file, field) => {
     const formData = new FormData();
     formData.append("file", file);
@@ -190,12 +237,18 @@ function ProjectEdit() {
       folderName = "images/Project_logo_pic";
     } else if (field === "descriptionImage") {
       folderName = "images/Project_pic";
-    }  else if (field === "image1") {
+    } else if (field === "image1") {
       folderName = "images/Project_pic";
     } else if (field === "image2") {
       folderName = "images/Project_pic";
     } else if (field === "image3") {
       folderName = "images/Project_pic";
+    } else if (field === "MemberImage1") {
+      folderName = "images/profile_pic";
+    } else if (field === "MemberImage2") {
+      folderName = "images/profile_pic";
+    } else if (field === "MemberImage3") {
+      folderName = "images/profile_pic";
     }
 
     if (folderName === "") {
@@ -318,7 +371,7 @@ function ProjectEdit() {
                 className={`form-control ${
                   myFormik.errors.technology ? "is-invalid" : ""
                 }`}
-                rows="5"
+                rows="3"
               ></textarea>
               <span style={{ color: "red" }}>{myFormik.errors.technology}</span>
             </div>
@@ -433,97 +486,103 @@ function ProjectEdit() {
             </div>
 
             <div className="col-lg-6">
-            <label>Image Title1</label>
-            <input
-              name="imageTitle1"
-              value={myFormik.values.imageTitle1}
-              onChange={myFormik.handleChange}
-              type="text"
-              className={`form-control ${
-                myFormik.errors.imageTitle1 ? "is-invalid" : ""
-              }`}
-            />
-            <span style={{ color: "red" }}>{myFormik.errors.imageTitle1}</span>
-          </div>
+              <label>Image Title1</label>
+              <input
+                name="imageTitle1"
+                value={myFormik.values.imageTitle1}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.imageTitle1 ? "is-invalid" : ""
+                }`}
+              />
+              <span style={{ color: "red" }}>
+                {myFormik.errors.imageTitle1}
+              </span>
+            </div>
 
-          <div className="col-lg-6">
-            <label>Project Content1</label>
-            <textarea
-              name="imageContent1"
-              value={myFormik.values.imageContent1}
-              onChange={myFormik.handleChange}
-              type="text"
-              className={`form-control ${
-                myFormik.errors.imageContent1 ? "is-invalid" : ""
-              }`}
-              rows="5"
-            ></textarea>
-            <span style={{ color: "red" }}>
-              {myFormik.errors.imageContent1}
-            </span>
-          </div>
+            <div className="col-lg-6">
+              <label>Project Content1</label>
+              <textarea
+                name="imageContent1"
+                value={myFormik.values.imageContent1}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.imageContent1 ? "is-invalid" : ""
+                }`}
+                rows="2"
+              ></textarea>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.imageContent1}
+              </span>
+            </div>
 
-          <div className="col-lg-6">
-            <label>Image Title2</label>
-            <input
-              name="imageTitle2"
-              value={myFormik.values.imageTitle2}
-              onChange={myFormik.handleChange}
-              type="text"
-              className={`form-control ${
-                myFormik.errors.imageTitle1 ? "is-invalid" : ""
-              }`}
-            />
-            <span style={{ color: "red" }}>{myFormik.errors.imageTitle1}</span>
-          </div>
+            <div className="col-lg-6">
+              <label>Image Title2</label>
+              <input
+                name="imageTitle2"
+                value={myFormik.values.imageTitle2}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.imageTitle1 ? "is-invalid" : ""
+                }`}
+              />
+              <span style={{ color: "red" }}>
+                {myFormik.errors.imageTitle1}
+              </span>
+            </div>
 
-          <div className="col-lg-6">
-            <label>Project Content2</label>
-            <textarea
-              name="imageContent2"
-              value={myFormik.values.imageContent2}
-              onChange={myFormik.handleChange}
-              type="text"
-              className={`form-control ${
-                myFormik.errors.imageContent1 ? "is-invalid" : ""
-              }`}
-              rows="5"
-            ></textarea>
-            <span style={{ color: "red" }}>
-              {myFormik.errors.imageContent1}
-            </span>
-          </div>
+            <div className="col-lg-6">
+              <label>Project Content2</label>
+              <textarea
+                name="imageContent2"
+                value={myFormik.values.imageContent2}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.imageContent1 ? "is-invalid" : ""
+                }`}
+                rows="2"
+              ></textarea>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.imageContent1}
+              </span>
+            </div>
 
-          <div className="col-lg-6">
-            <label>Image Title3</label>
-            <input
-              name="imageTitle3"
-              value={myFormik.values.imageTitle3}
-              onChange={myFormik.handleChange}
-              type="text"
-              className={`form-control ${
-                myFormik.errors.imageTitle1 ? "is-invalid" : ""
-              }`}
-            />
-            <span style={{ color: "red" }}>{myFormik.errors.imageTitle1}</span>
-          </div>
+            <div className="col-lg-6">
+              <label>Image Title3</label>
+              <input
+                name="imageTitle3"
+                value={myFormik.values.imageTitle3}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.imageTitle1 ? "is-invalid" : ""
+                }`}
+              />
+              <span style={{ color: "red" }}>
+                {myFormik.errors.imageTitle1}
+              </span>
+            </div>
 
-          <div className="col-lg-6">
-            <label>Project Content3</label>
-            <textarea
-              name="imageContent3"
-              value={myFormik.values.imageContent3}
-              onChange={myFormik.handleChange}
-              type="text"
-              className={`form-control ${
-                myFormik.errors.imageContent1 ? "is-invalid" : ""
-              }`}
-              rows="5"
-            ></textarea>
-            <span style={{ color: "red" }}>
-              {myFormik.errors.imageContent1}
-            </span>
-          </div>
+            <div className="col-lg-6">
+              <label>Project Content3</label>
+              <textarea
+                name="imageContent3"
+                value={myFormik.values.imageContent3}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.imageContent1 ? "is-invalid" : ""
+                }`}
+                rows="2"
+              ></textarea>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.imageContent1}
+              </span>
+            </div>
 
             <div className="col-lg-6">
               <label>
@@ -539,10 +598,169 @@ function ProjectEdit() {
                 className={`form-control ${
                   myFormik.errors.StructuredOurWorkflow ? "is-invalid" : ""
                 }`}
-                rows="5"
+                rows="3"
               ></textarea>
               <span style={{ color: "red" }}>
                 {myFormik.errors.StructuredOurWorkflow}
+              </span>
+            </div>
+
+            <div className="col-lg-6 mt-3">
+              <label>Choose TeamMember Picture 1</label>
+              <br />
+              <img
+                src={initialData.MemberImage1}
+                alt="Previous"
+                style={{ width: "100px", height: "100px", cursor: "pointer" }}
+                onClick={() => handleTeamMemberImage1Click("MemberImage1")} // Pass the field name
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={TeamMemberImage1FileInputRef} // For sliderImg input
+                style={{ display: "none" }}
+                onChange={(event) =>
+                  handleTeamMemberImage1FileChange(event, "MemberImage1")
+                } // Pass the field name
+              />
+            </div>
+
+            <div className="col-lg-6">
+              <label>TeamMember Name 1</label>
+              <input
+                name="MemberName1"
+                value={myFormik.values.MemberName1}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.MemberName1 ? "is-invalid" : ""
+                }`}
+              ></input>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.MemberName1}
+              </span>
+            </div>
+
+            <div className="col-lg-6">
+              <label>TeamMember Work 1</label>
+              <textarea
+                name="MemberWork1"
+                value={myFormik.values.MemberWork1}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.MemberWork1 ? "is-invalid" : ""
+                }`}
+                rows="2"
+              ></textarea>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.MemberWork1}
+              </span>
+            </div>
+
+            <div className="col-lg-6 mt-3">
+              <label>Choose TeamMember Picture 2</label>
+              <br />
+              <img
+                src={initialData.MemberImage2}
+                alt="Previous"
+                style={{ width: "100px", height: "100px", cursor: "pointer" }}
+                onClick={() => handleTeamMemberImage2Click("MemberImage2")} // Pass the field name
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={TeamMemberImage2FileInputRef} // For sliderImg input
+                style={{ display: "none" }}
+                onChange={(event) =>
+                  handleTeamMemberImage2FileChange(event, "MemberImage2")
+                } // Pass the field name
+              />
+            </div>
+
+            <div className="col-lg-6">
+              <label>TeamMember Name 2</label>
+              <input
+                name="MemberName2"
+                value={myFormik.values.MemberName2}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.MemberName1 ? "is-invalid" : ""
+                }`}
+              ></input>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.MemberName1}
+              </span>
+            </div>
+
+            <div className="col-lg-6">
+              <label>TeamMember Work 2</label>
+              <textarea
+                name="MemberWork2"
+                value={myFormik.values.MemberWork2}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.MemberWork1 ? "is-invalid" : ""
+                }`}
+                rows="2"
+              ></textarea>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.MemberWork1}
+              </span>
+            </div>
+
+            <div className="col-lg-6 mt-3">
+              <label>Choose TeamMember Picture 3</label>
+              <br />
+              <img
+                src={initialData.MemberImage3}
+                alt="Previous"
+                style={{ width: "100px", height: "100px", cursor: "pointer" }}
+                onClick={() => handleTeamMemberImage3Click("MemberImage3")} // Pass the field name
+              />
+              <input
+                type="file"
+                accept="image/*"
+                ref={TeamMemberImage3FileInputRef} // For sliderImg input
+                style={{ display: "none" }}
+                onChange={(event) =>
+                  handleTeamMemberImage3FileChange(event, "MemberImage3")
+                } // Pass the field name
+              />
+            </div>
+
+            <div className="col-lg-6">
+              <label>TeamMember Name 3</label>
+              <input
+                name="MemberName3"
+                value={myFormik.values.MemberName3}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.MemberName1 ? "is-invalid" : ""
+                }`}
+              ></input>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.MemberName1}
+              </span>
+            </div>
+
+            <div className="col-lg-6">
+              <label>TeamMember Work 3</label>
+              <textarea
+                name="MemberWork3"
+                value={myFormik.values.MemberWork3}
+                onChange={myFormik.handleChange}
+                type="text"
+                className={`form-control ${
+                  myFormik.errors.MemberWork1 ? "is-invalid" : ""
+                }`}
+                rows="2"
+              ></textarea>
+              <span style={{ color: "red" }}>
+                {myFormik.errors.MemberWork1}
               </span>
             </div>
 

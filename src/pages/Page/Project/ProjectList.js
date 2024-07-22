@@ -137,6 +137,15 @@ function ProjectList() {
                     <th>Project Image3</th>
                     <th>Image Title3</th>
                     <th>Image Content3</th>
+                    <th>Member Image1</th>
+                    <th>Member Name1</th>
+                    <th>Member Work1</th>
+                    <th>Member Image2</th>
+                    <th>Member Name2</th>
+                    <th>Member Work2</th>
+                    <th>Member Image3</th>
+                    <th>Member Name3</th>
+                    <th>Member Work3</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -193,6 +202,33 @@ function ProjectList() {
                       </td>
                       <td>{data.imageTitle3}</td>
                       <td>{data.imageContent3}</td>
+                      <td>
+                        <img
+                          src={data.MemberImage1}
+                          style={{ height: "100px", width: "100px" }}
+                          alt=""
+                        />
+                      </td>
+                      <td>{data.MemberName1}</td>
+                      <td>{data.MemberWork1}</td>
+                      <td>
+                        <img
+                          src={data.MemberImage2}
+                          style={{ height: "100px", width: "100px" }}
+                          alt=""
+                        />
+                      </td>
+                      <td>{data.MemberName2}</td>
+                      <td>{data.MemberWork2}</td>
+                      <td>
+                        <img
+                          src={data.MemberImage3}
+                          style={{ height: "100px", width: "100px" }}
+                          alt=""
+                        />
+                      </td>
+                      <td>{data.MemberName3}</td>
+                      <td>{data.MemberWork3}</td>
                       <td>
                         <Link
                           to={`/portal/project-edit/${data._id}`}
